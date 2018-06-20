@@ -1,14 +1,34 @@
+import javax.swing.*;
+import java.util.Scanner;
+
 public class MazeGen {
 
     public static void main(String[] args){
-        mazeGenerator Gen = new mazeGenerator(10,10);
+        Scanner sc = new Scanner(System.in);
+        int xSize;
+        int ySize;
+        System.out.println("Give the maze size, at least 2 by 2(x y)");
+        xSize = sc.nextInt();
+        ySize = sc.nextInt();
+        sc.close();
+        mazeGenerator Gen = new mazeGenerator(xSize,ySize);
         Gen.generateMaze();
-        drawMaze(Gen.gethWalls(),Gen.getvWalls());
+        //drawCLIGraphics(Gen.gethWalls(),Gen.getvWalls());
+        drawGrapichs(Gen.gethWalls(),Gen.getvWalls());
     }
 
+    public static void drawGrapichs(boolean[][] hWalls, boolean[][] vWalls){
+        JFrame frame = new JFrame ("MazeGen");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mazeDraw m = new mazeDraw(hWalls, vWalls);
+        frame.add(m);
+        //so that the maze is 500x500, the window is sized like this
+        frame.setSize(517,541);
+        frame.setVisible(true);
+    }
 
-
-    public static void drawMaze(boolean[][] hWalls, boolean[][] vWalls){
+    //obsolete, left it here just because
+    public static void drawCLIGraphics(boolean[][] hWalls, boolean[][] vWalls){
         //scales to the size of the maze
         //upper wall
         System.out.print("# ");

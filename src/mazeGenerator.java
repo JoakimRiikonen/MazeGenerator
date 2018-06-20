@@ -16,11 +16,11 @@ public class mazeGenerator {
         //set up the pathTaken variable to have edges
         for(int i=0;i<pathTaken[0].length;i++){
             pathTaken[0][i] = true;
-            pathTaken[ySize+1][i] = true;
+            pathTaken[xSize+1][i] = true;
         }
         for(int i=0;i<pathTaken.length;i++){
             pathTaken[i][0] = true;
-            pathTaken[i][xSize+1] = true;
+            pathTaken[i][ySize+1] = true;
         }
     }
 
